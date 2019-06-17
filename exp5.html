@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
+		<script>
+			var message=[];
+			function liy(){
+				var name = $("#name").val();
+				var mage = $("#mage").val();
+				var date = new Date();
+				var temp = "["+name+"]在"+date.toLocaleTimeString()+"说:"+mage;
+				message.unshift(temp);
+				$("#mages").val(Tstr(message));
+			}
+			function Tstr(ss){
+				var s="";
+				for(var i=0;i<ss.length;i++){
+					s+=ss[i];
+					s+="\n";
+				}
+				return s;
+			}
+		</script>
+		
+	</head>
+	<body>
+		姓名：
+		<input type="text" id="name"/><br /><br />
+		<textarea rows="3" cols="70" id="mage"></textarea><br />
+		<button onclick="liy()">留言</button><br />
+		<textarea rows="10" cols="70" id="mages"></textarea>
+	</body>
+</html>

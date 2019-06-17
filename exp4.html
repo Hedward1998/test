@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
+		<script>
+			function fun(){
+				var btns=$("button");
+				for(var i=0;i<btns.length;i++){
+					btns[i].addEventListener("click",fun1,false);
+				}
+			}
+			function fun1(event){
+				var target;
+				var num1=$("#a").val();
+				var num2=$("#b").val();
+				//event自动获得
+				if (window.event) {
+					event=window.event;
+					target=event.srcElement;
+				}else{
+					target=event.target;
+				}
+                if(isNaN(num1)||isNaN(num2)){
+                	alert("输入的字符不是数字！");
+                	return;
+                }
+                if(num1==""||num2==""){
+                	alert("请把数字输完整!");
+                	return;
+                }
+                if(num2=="0"){
+                	if(target.innerHTML=='/'){
+                		alert("除数不能为0！");
+                	return;
+                	}
+                }
+                $("#c").val(eval(num1+target.innerHTML+num2));//求值函数,直接算
+			}
+		</script>
+	</head>
+	<body onload="fun()">
+		<table>
+			<tr>
+				<td>第一个数：</td>
+				<td colspan="4">
+					<input type="text" id="a"/>
+				</td>
+			</tr>
+			<tr>
+				<td>第二个数：</td>
+				<td colspan="4">
+					<input type="text" id="b"/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button>+</button></td>
+				<td><button>-</button></td>
+				<td><button>*</button></td>
+				<td><button>/</button></td>
+			</tr>
+			<tr>
+				<td>计算结果：</td>
+				<td colspan="4"><input type="text" id="c"/>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
